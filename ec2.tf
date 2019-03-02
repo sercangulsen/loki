@@ -1,16 +1,16 @@
 provider "aws" {
-  region              = "eu-west-1"
+  region                 = "eu-west-1"
 }
 
 resource "aws_lb" "loki-lb" {
-  name                = "loki-lb"
-  internal            = false
-  load_balancer_type  = "application"
-  subnets             = ["subnet-2687ba6f","subnet-f29befa9"]
+  name                   = "loki-lb"
+  internal               = false
+  load_balancer_type     = "application"
+  subnets                = ["subnet-2687ba6f","subnet-f29befa9"]
 #  enable_deletion_protection = true
 
   tags {
-    Environment       = "Development"
+    Environment           = "Development"
   }
 
 }
@@ -36,5 +36,6 @@ resource "aws_db_instance" "loki-rds" {
   name                    = "lokirds"
   username                = "lokiuser"
   password                = "lokipassword"
-  db_subnet_group_name    = "subnet-4e87ba07"
+  db_subnet_group_name    = "eu-west-1-development-vpc-rdbsubnetgroup-90pgu8jkamxr"
+  skip_final_snapshot     = true
 }
